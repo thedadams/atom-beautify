@@ -1,9 +1,9 @@
 {
   "name": "atom-beautify",
-  "main": "./lib/beautify",
-  "version": "0.10.4",
+  "main": "./src/beautify",
+  "version": "0.28.7",
   "private": true,
-  "description": "Beautify HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, and SQL in Atom",
+  "description": "Beautify HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, TypeScript, and SQL in Atom",
   "repository": {
     "type": "git",
     "url": "https://github.com/Glavin001/atom-beautify"
@@ -38,8 +38,71 @@
     {
       "name": "Vadim K.",
       "url": "https://github.com/vadirn"
+    },
+    {
+      "name": "Filipe Silva",
+      "url": "https://github.com/filipesilva"
+    },
+    {
+      "name": "Ramón Cahenzli",
+      "url": "https://github.com/psy-q"
+    },
+    {
+      "name": "Clemens Damke",
+      "url": "https://github.com/Cortys"
     }
   ],
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+    "analytics-node": "^1.2.2",
+    "async": "^1.2.1",
+    "atom-message-panel": "^1.2.4",
+    "atom-space-pen-views": "^2.0.5",
+    "bluebird": "^2.9.30",
+    "coffee-fmt": "0.11.0",
+    "coffee-formatter": "^0.1.2",
+    "cross-spawn": "^0.4.1",
+    "csscomb": "^3.1.7",
+    "diff": "^1.4.0",
+    "editorconfig": "^0.12.2",
+    "emissary": "^1.3.3",
+    "event-kit": "^1.2.0",
+    "expand-home-dir": "0.0.2",
+    "extend": "^2.0.1",
+    "handlebars": "^3.0.3",
+    "js-beautify": "^1.5.7",
+    "jscs": "^1.13.1",
+    "lodash": "3.9.3",
+    "loophole": "^1.0.0",
+    "node-dir": "^0.1.8",
+    "node-uuid": "^1.4.3",
+    "prettydiff": "^1.12.8",
+    "space-pen": "^5.1.1",
+    "strip-json-comments": "^1.0.2",
+    "temp": "^0.8.3",
+    "tidy-markdown": "^0.3.2",
+    "typescript-formatter": "~0.3.2",
+    "underscore-plus": "^1.6.6",
+    "which": "^1.1.1",
+    "winston": "^1.0.0",
+    "yaml-front-matter": "^3.2.3"
+  },
+  "activationCommands": {
+    "atom-workspace": [
+      "atom-beautify:help-debug-editor",
+      "atom-beautify:beautify-editor",
+      "core:save",
+      "core:save-as"
+    ],
+    ".tree-view .file .name": [
+      "atom-beautify:beautify-file"
+    ],
+    ".tree-view .directory .name": [
+      "atom-beautify:beautify-directory"
+    ]
+  },
   "keywords": [
     "atom",
     "beautify",
@@ -49,6 +112,7 @@
     "pretty",
     "html",
     "handlebars",
+    "mustache",
     "xml",
     "css",
     "javascript",
@@ -58,10 +122,12 @@
     "scss",
     "less",
     "sql",
+    "markdown",
     "php",
     "python",
     "ruby",
     "coffeescript",
+    "typescript",
     "c",
     "c++",
     "cpp",
@@ -74,24 +140,22 @@
     "vala",
     "d",
     "erb",
-    "editorconfig"
+    "editorconfig",
+    "yaml",
+    "front matter",
+    "jekyll",
+    "marko",
+    "go",
+    "golang"
   ],
-  "engines": {
-    "atom": ">0.50.0"
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "coffeelint": "^1.10.1",
+    "handlebars": "^3.0.3"
   },
-  "dependencies": {
-    "emissary": "^1.0.0",
-    "extend": "^1.2.1",
-    "js-beautify": "~1.5.1",
-    "lodash": "2.4.1",
-    "strip-json-comments": "^0.1.3",
-    "js-yaml": "^3.0.2",
-    "temp": "^0.8.0",
-    "prettydiff": "^1.2.1",
-    "node-uuid": "^1.4.1",
-    "analytics-node": "^1.0.2",
-    "coffee-formatter": "git+https://github.com/Glavin001/Coffee-Formatter.git",
-    "atom-message-panel": "^1.1.1",
-    "editorconfig": "^0.11.4"
+  "scripts": {
+    "prepublish": "npm run docs",
+    "docs": "coffee docs/",
+    "lint": "coffeelint src/ spec/"
   }
 }
